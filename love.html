@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Gift</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background: url('backgroundlove.png') no-repeat center center fixed;
+            background-size: cover;
+            transition: background-image 1s ease-in-out;
+        }
+        #text {
+            position: absolute;
+            top: 30%;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+            font-size: 2rem;
+            text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.7);
+            font-family: 'Playwrite_AU_SA', cursive;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            animation: floatUp 5s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+        #playButton {
+            background-color: #ea8a4a; /* Pink background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            padding: 15px 32px; /* Add padding */
+            text-align: center; /* Center text */
+            text-decoration: none; /* Remove underline */
+            display: inline-block; /* Inline-block display */
+            font-size: 16px; /* Increase font size */
+            margin: 4px 2px; /* Add margin */
+            cursor: pointer; /* Pointer cursor on hover */
+            border-radius: 12px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition */
+            position: absolute; /* Positioning */
+            top: 20px; /* Distance from top */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Adjust for centering */
+        }
+    
+        #playButton:hover {
+            background-color: #ea671c; /* Darker pink on hover */
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+
+    <button id="playButton" onclick="playMusic()">💖 Play Music 💖</button>
+    <audio id="myAudio" loop>
+        <source src="lady_gaga_bruno_mars_die_with_a_smile.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const lyrics = [
+            { time: 0, text: "" },
+            { time: 9000, text: "I" },
+            { time: 2000, text: "I just woke up from a dream", speed: 90 },
+            { time: 1800, text: "Where you and I had to say goodbye", speed: 70 },
+            { time: 2000, text: "And I don't know what it all means", speed: 80 },
+            { time: 1500, text: "But since I survived, I realized", speed: 90 },
+            { time: 2000, text: "Wherever you go, that's where I'll follow", speed: 60 },
+            { time: 2500, text: "Nobody's promised tomorrow", speed: 90 },
+            { time: 1800, text: "So I'ma love you every night like it's the last night", speed:50},
+            { time: 500, text: "Like it's the last night", speed: 60 },
+            { time: 1200, text: "If the world was ending", speed: 100 },
+            { time: 800, text: "I'd wanna be next to you" , speed: 80},
+            { time: 3000, text: "Love you 💜", speed: 100 }
+        ];
+
+        const textElement = document.getElementById('text');
+        let currentLine = 0;
+
+        function typeSentence(sentence, charDelay) {
+            let index = 0;
+            const typingInterval = setInterval(() => {
+                if (index < sentence.length) {
+                    textElement.textContent += sentence[index];
+                    index++;
+                } else {
+                    clearInterval(typingInterval);
+                    currentLine++;
+                    if (currentLine < lyrics.length) {
+                        setTimeout(() => {
+                            textElement.textContent = '';
+                            typeSentence(lyrics[currentLine].text, lyrics[currentLine].speed);
+                        }, lyrics[currentLine].time);
+                    }
+                }
+            }, charDelay);
+        }
+                // Background images array
+                const backgrounds = [
+                'url(backgroundlove.png)',
+                'url(SKY_20231103_200206_.jpg)',
+                'url(SKY_20231027_223249_.jpg)',
+                'url(SKY_20231016_190002_.jpg)',
+                'url(SKY_20231015_164748_.jpg)'
+            ];
+            let currentBackground = 0;
+    
+            function changeBackground() {
+                document.body.style.backgroundImage = backgrounds[currentBackground];
+                currentBackground = (currentBackground + 1) % backgrounds.length;
+            }
+    
+            // Change background every 10 seconds
+            setInterval(changeBackground, 10000);
+    
+            // Initial background
+            changeBackground();
+
+        function playMusic() {
+            const audio = document.getElementById('myAudio');
+            audio.play();
+            document.getElementById('playButton').disabled = true;
+
+            setTimeout(() => {
+                typeSentence(lyrics[currentLine].text, lyrics[currentLine].speed);
+            }, 1000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
