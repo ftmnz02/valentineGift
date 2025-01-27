@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>چالش عاشقانه</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>چالش عاشقانه!</h1>
+        <p>اولین روزی که با هم آشنا شدیم رو وارد کن:</p>
+        <input type="text" id="answer" placeholder="مثلاً 2023/02/14">
+        <button onclick="checkAnswer()">تایید</button>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const answer = document.getElementById('answer').value;
+            if (answer === "14") { // رمز صحیح
+                window.location.href = "love.html"; // انتقال به صفحه دوم
+            } else {
+                alert("جواب اشتباهه! دوباره امتحان کن.");
+            }
+        }
+    </script>
+</body>
+</html>
