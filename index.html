@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'dancing script', sans-serif;
+            background: url('backgroundlove.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            margin-top: 50px;
+            text-align: center;
+            color: white;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            position: relative;
+        }
+        button:hover {
+            background-color: #ea8a4a;
+        }
+        #noButton {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will you be my valentine?</h1>
+        <button onclick="handleAnswer('yes')">Yes</button>
+        <button id="noButton" onclick="handleAnswer('no')">No</button>
+    </div>
+
+    <script>
+        function handleAnswer(answer) {
+            if (answer === 'yes') {
+                window.location.href = "love.html";
+            } else {
+                alert("There's no option to reject me, press Yes");
+            }
+        }
+
+        const noButton = document.getElementById('noButton');
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.clientWidth);
+            const y = Math.random() * (window.innerHeight - noButton.clientHeight);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+    </script>
+</body>
+</html>
